@@ -7,9 +7,9 @@ import play.api.libs.json.{Format, Json}
 
 trait CompanyService extends Service {
 
-  def getCompany(id: String): ServiceCall[NotUsed, Company]
+  def getCompany(id: Company#Id): ServiceCall[NotUsed, Company]
 
-  def saveCompany(): ServiceCall[Company, NotUsed]
+  def saveCompany(): ServiceCall[Company, Company]
 
   override def descriptor: Descriptor = {
     import Service._
@@ -21,7 +21,9 @@ trait CompanyService extends Service {
   }
 }
 
-case class Company(name: String)
+case class Company(id: Option[Company#Id], name: String) {
+  type Id = String
+}
 
 object Company {
   implicit val format: Format[Company] = Json.format[Company]

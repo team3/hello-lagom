@@ -27,14 +27,15 @@ class CompanyLoader extends LagomApplicationLoader {
 }
 
 abstract class CompanyServiceApplication(context: LagomApplicationContext)
-  extends LagomApplication(context)
-    with AhcWSComponents
-    with LagomKafkaComponents
-    with CassandraPersistenceComponents {
+        extends LagomApplication(context)
+                with AhcWSComponents
+                with LagomKafkaComponents
+                with CassandraPersistenceComponents {
 
   override lazy val lagomServer: LagomServer = serverFor[CompanyService](wire[CompanyServiceImpl])
 
-  override lazy val jsonSerializerRegistry = CompanyServiceSerializerRegistry
+  override lazy val jsonSerializerRegistry: CompanyServiceSerializerRegistry.type = CompanyServiceSerializerRegistry
 
+  persistentEntityRegistry.register(wire[CompanyEntity])
 }
 

@@ -69,3 +69,5 @@ lazy val `hello-lagom-stream-impl` = (project in file("hello-lagom-stream-impl")
     )
   )
   .dependsOn(`hello-lagom-stream-api`, `hello-lagom-api`)
+
+lagomServiceGatewayPort in ThisBuild := 9010

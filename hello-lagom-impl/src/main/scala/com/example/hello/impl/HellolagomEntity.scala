@@ -40,7 +40,7 @@ class HellolagomEntity extends PersistentEntity {
   /**
     * The initial state. This is used if there is no snapshotted state to be found.
     */
-  override def initialState: HellolagomState = ("Hello", LocalDateTime.now.toString)
+  override def initialState: HellolagomState = HellolagomState("Hello", LocalDateTime.now.toString)
 
   /**
     * An entity can define different behaviours for different states, so the behaviour

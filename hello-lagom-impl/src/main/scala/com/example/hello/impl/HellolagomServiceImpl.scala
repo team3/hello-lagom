@@ -38,7 +38,7 @@ class HellolagomServiceImpl(persistentEntityRegistry: PersistentEntityRegistry) 
     TopicProducer.singleStreamWithOffset {
       fromOffset =>
         persistentEntityRegistry.eventStream(HellolagomEvent.Tag, fromOffset)
-          .map(ev => (convertEvent(ev), ev.offset))
+            .map(ev => (convertEvent(ev), ev.offset))
     }
 
   private def convertEvent(helloEvent: EventStreamElement[HellolagomEvent]): api.GreetingMessageChanged = {
